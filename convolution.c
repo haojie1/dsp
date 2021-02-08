@@ -7,7 +7,8 @@ typedef struct sequnce{
 	int first_index, length;
 } * pSequnce, Sequnce;
 
-void getSequnce(pSequnce sequnce);
+//void getSequnce(pSequnce sequnce);
+pSequnce getSequnce();
 void showSequnce(pSequnce sequnce);
 void clearSpace(pSequnce sequnce);
 pSequnce computeConvolution(pSequnce sequnce1, pSequnce sequnce2);
@@ -19,17 +20,19 @@ int main(void)
 {
 	pSequnce sequnce1, sequnce2 ,result;
 
-	sequnce1 = (pSequnce)malloc(sizeof(Sequnce));
+	//sequnce1 = (pSequnce)malloc(sizeof(Sequnce));
 	printf("Please input the first sequnce\n");
-	getSequnce(sequnce1);
+	//getSequnce(sequnce1);
+	sequnce1 = getSequnce();
 	showSequnce(sequnce1);
 
-	sequnce2 = (pSequnce)malloc(sizeof(Sequnce));
+	//sequnce2 = (pSequnce)malloc(sizeof(Sequnce));
 	printf("Please input the second sequnce\n");
-	getSequnce(sequnce2);
+	//getSequnce(sequnce2);
+	sequnce2 = getSequnce();
 	showSequnce(sequnce2);
 
-	result = (pSequnce)malloc(sizeof(Sequnce));
+	//result = (pSequnce)malloc(sizeof(Sequnce));
 	result = computeConvolution(sequnce1, sequnce2);
 	printf("the result is: \n");
 	showSequnce(result);	
@@ -39,6 +42,7 @@ int main(void)
 	clearSpace(result);
 }
 
+/*
 void getSequnce(pSequnce sequnce)
 {
 	int count;
@@ -54,6 +58,28 @@ void getSequnce(pSequnce sequnce)
 	{
 		scanf("%d", sequnce->sequnce+count);
 	}
+}*/
+
+pSequnce getSequnce()
+{
+	pSequnce sequnce;
+	int count;
+
+	sequnce = (pSequnce)malloc(sizeof(Sequnce));
+	printf("the index of the sequnce: ");
+	scanf("%d", &(sequnce->first_index));
+	printf("the length of the sequnce: ");
+	scanf("%d", &(sequnce->length));
+	
+	//malloc the space for the first sequnce
+	sequnce->sequnce = (int*)malloc(sizeof(int) * sequnce->length);
+	printf("please input the data of the sequnce: ");
+	for(count=0; count<sequnce->length; count++)
+	{
+		scanf("%d", sequnce->sequnce+count);
+	}
+
+	return sequnce;
 }
 
 /*
